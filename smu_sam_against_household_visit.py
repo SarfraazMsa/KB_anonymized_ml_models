@@ -830,7 +830,8 @@ from explainerdashboard.datasets import *
 model = MLPClassifier().fit(X_train, y_train)
 explainer = ClassifierExplainer(model, X_test, y_test, shap='kernel')   
 ExplainerDashboard(explainer, shap_interaction=False).run()
-
+db = ExplainerDashboard(explainer)
+db.to_yaml("dashboard.yaml", explainerfile="explainer.joblib", dump_explainer=True)
 
 from sklearn.ensemble import RandomForestClassifier
 from explainerdashboard import ClassifierExplainer, ExplainerDashboard
